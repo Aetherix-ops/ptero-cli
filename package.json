@@ -1,0 +1,38 @@
+{
+  "name": "@aetherix-ops/ptero-cli",
+  "version": "1.0.0",
+  "description": "Command line tool for managing Pterodactyl Panel from your terminal",
+  "main": "bin/ptero.js",
+  "bin": {
+    "ptero": "./bin/ptero.js"
+  },
+  "scripts": {
+    "start": "node bin/ptero.js"
+  },
+  "keywords": [
+    "pterodactyl",
+    "pterodactyl-cli",
+    "ptero",
+    "panel",
+    "cli",
+    "hosting",
+    "game-server"
+  ],
+  "author": "aetherix-ops",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aetherix-ops/ptero-cli.git"
+  },
+  "homepage": "https://github.com/Aetherix-ops/ptero-cli#readme",
+  "bugs": {
+    "url": "https://github.com/Aetherix-ops/ptero-cli/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@aetherix-ops/ptero-api": "^1.0.0",
+    "commander": "^12.0.0"
+  }
+}
