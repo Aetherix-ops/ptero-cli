@@ -115,8 +115,8 @@ Total: 3 servers
 ──────────────────────────────────────────────────
 
 ID          NAME          STATUS       RAM        CPU     DISK
-abc12345    TelisSMP      ● running    2.1GB      28.4%   8.2GB
-def67890    Lunexia Bot   ● running    512.0MB    12.1%   1.1GB
+abc12345    MinecraftSMP      ● running    2.1GB      28.4%   8.2GB
+def67890    Discord Bot   ● running    512.0MB    12.1%   1.1GB
 ghi11223    Dev API       ○ offline    -          -       -
 ```
 
