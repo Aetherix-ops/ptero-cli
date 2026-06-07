@@ -102,8 +102,8 @@ ptero node info <id>
 ──────────────────────────────────────────────────
 
 ID          NAME                      NODE
-abc12345    TelisSMP                  node-1
-def67890    Lunexia Bot               node-1
+abc12345    Servermc                  node-1
+def67890    Discord Bot               node-1
 ghi11223    Dev API                   node-1
 
 Total: 3 servers
@@ -115,7 +115,7 @@ Total: 3 servers
 ──────────────────────────────────────────────────
 
 ID          NAME          STATUS       RAM        CPU     DISK
-abc12345    MinecraftSMP      ● running    2.1GB      28.4%   8.2GB
+abc12345    SermcSMP      ● running    2.1GB      28.4%   8.2GB
 def67890    Discord Bot   ● running    512.0MB    12.1%   1.1GB
 ghi11223    Dev API       ○ offline    -          -       -
 ```
