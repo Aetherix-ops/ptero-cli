@@ -9,14 +9,23 @@ module.exports = function(program) {
     .command("node")
     .description("Manage Pterodactyl nodes (admin)");
 
-  // ── LIST ──────────────────────────────────────────────────
+  // Helper to get PteroApp instance with validation
+  function getAppClient(cfg) {
+    if (!cfg.appKey) {
+      err("This command requires an Application API Key (PTERO_APP_KEY).");
+      process.exit(1);
+    }
+    return new PteroApp(cfg.panelUrl, cfg.appKey);
+  }
+
+  // ── LIST ───────────────────────────────────
   node
     .command("list")
     .alias("ls")
     .description("List all nodes")
     .action(async () => {
       const cfg = requireConfig();
-      const app = new PteroApp(cfg.panelUrl, cfg.appKey || cfg.clientKey);
+      const app = getAppClient(cfg);
 
       try {
         header("Nodes");
@@ -51,13 +60,13 @@ module.exports = function(program) {
       }
     });
 
-  // ── INFO ──────────────────────────────────────────────────
+  // ── INFO ───────────────────────────────────
   node
     .command("info <id>")
     .description("Get node details")
     .action(async (id) => {
       const cfg = requireConfig();
-      const app = new PteroApp(cfg.panelUrl, cfg.appKey || cfg.clientKey);
+      const app = getAppClient(cfg);
 
       try {
         const res = await app.getNode(id);
