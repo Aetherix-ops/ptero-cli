@@ -4,6 +4,14 @@ const fs = require("fs");
 const path = require("path");
 const os = require("os");
 
+// Colors (defined first to avoid ReferenceError)
+const C = {
+  red:   "\x1b[31m",
+  cyan:  "\x1b[36m",
+  dim:   "\x1b[2m",
+  reset: "\x1b[0m"
+};
+
 const CONFIG_PATH = path.join(os.homedir(), ".ptero", "config.json");
 
 let config = {
@@ -53,12 +61,4 @@ Or set environment variables:
   return config;
 }
 
-// Colors
-const C = {
-  red:   "\x1b[31m",
-  cyan:  "\x1b[36m",
-  dim:   "\x1b[2m",
-  reset: "\x1b[0m"
-};
-
-module.exports = { loadConfig, saveConfig, getConfig, requireConfig, CONFIG_PATH };
+module.exports = { loadConfig, saveConfig, getConfig, requireConfig, CONFIG_PATH, C };
