@@ -9,14 +9,23 @@ module.exports = function(program) {
     .command("user")
     .description("Manage Pterodactyl users (admin)");
 
-  // ── LIST ──────────────────────────────────────────────────
+  // Helper to get PteroApp instance with validation
+  function getAppClient(cfg) {
+    if (!cfg.appKey) {
+      err("This command requires an Application API Key (PTERO_APP_KEY).");
+      process.exit(1);
+    }
+    return new PteroApp(cfg.panelUrl, cfg.appKey);
+  }
+
+  // ── LIST ───────────────────────────────────
   user
     .command("list")
     .alias("ls")
     .description("List all users")
     .action(async () => {
       const cfg = requireConfig();
-      const app = new PteroApp(cfg.panelUrl, cfg.appKey || cfg.clientKey);
+      const app = getAppClient(cfg);
 
       try {
         header("Users");
@@ -43,13 +52,13 @@ module.exports = function(program) {
       }
     });
 
-  // ── INFO ──────────────────────────────────────────────────
+  // ── INFO ───────────────────────────────────
   user
     .command("info <id>")
     .description("Get user details")
     .action(async (id) => {
       const cfg = requireConfig();
-      const app = new PteroApp(cfg.panelUrl, cfg.appKey || cfg.clientKey);
+      const app = getAppClient(cfg);
 
       try {
         const res = await app.getUser(id);
@@ -68,7 +77,7 @@ module.exports = function(program) {
       }
     });
 
-  // ── CREATE ────────────────────────────────────────────────
+  // ── CREATE ───────────────────────────────────
   user
     .command("create")
     .description("Create a new user")
@@ -79,7 +88,7 @@ module.exports = function(program) {
     .option("--password <password>", "Password")
     .action(async (opts) => {
       const cfg = requireConfig();
-      const app = new PteroApp(cfg.panelUrl, cfg.appKey || cfg.clientKey);
+      const app = getAppClient(cfg);
 
       try {
         const res = await app.createUser({
@@ -95,13 +104,13 @@ module.exports = function(program) {
       }
     });
 
-  // ── DELETE ────────────────────────────────────────────────
+  // ── DELETE ───────────────────────────────────
   user
     .command("delete <id>")
     .description("Delete a user")
     .action(async (id) => {
       const cfg = requireConfig();
-      const app = new PteroApp(cfg.panelUrl, cfg.appKey || cfg.clientKey);
+      const app = getAppClient(cfg);
 
       try {
         await app.deleteUser(id);
@@ -111,4 +120,3 @@ module.exports = function(program) {
       }
     });
 };
-          
